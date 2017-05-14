@@ -1,0 +1,21 @@
+﻿<Window x:Class="Projekt.TeamInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TeamInfo" Height="800" Width="800">
+    <Grid
+        x:Name="maingrid">
+        <TextBlock FontSize="25" FontStyle="Oblique" Margin="41,10,422,713" Text="{Binding Path=Name}"  />
+        <TextBlock Margin="29,70,663,669">Rok założenia:</TextBlock>
+        <TextBlock Text="{Binding Path=Founded}" Margin="110,70,521,669" />
+        <TextBlock Margin="29,100,663,639"><Run Text="Prezes:"/></TextBlock>
+        <TextBlock Text="{Binding Path=President}" Margin="110,100,521,639" />
+        <TextBlock Margin="29,130,663,609"><Run Text="Stadion:"/></TextBlock>
+        <TextBlock Text="{Binding Path=Stadium}" Margin="110,130,521,609" />
+        <TextBlock Margin="29,160,663,579"><Run Text="Pojemność:"/></TextBlock>
+        <TextBlock Text="{Binding Path=Capacity}" Margin="110,160,521,579" />
+        <TextBlock Margin="29,190,663,549"><Run Text="Trener:"/></TextBlock>
+        <TextBlock Text="{Binding Path=Coach}" Margin="110,190,521,549" />
+        <Image Source="{Binding Path=Logo}" Margin="539,37,36,510"/>
+
+    </Grid>
+</Window>
