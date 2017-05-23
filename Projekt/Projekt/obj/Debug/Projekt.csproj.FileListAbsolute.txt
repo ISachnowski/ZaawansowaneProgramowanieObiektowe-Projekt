@@ -29,3 +29,15 @@ C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\System.Data.SQLite.E
 C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\System.Data.SQLite.Linq.pdb
 C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\obj\Debug\TeamInfo.baml
 C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\obj\Debug\TeamInfo.g.cs
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\WebApiContrib.Formatting.JavaScriptSerializer.dll
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\obj\Debug\Projekt.csproj.ResolveComReference.cache
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\PdfSharp.dll
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\PdfSharp.xml
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\PdfSharp.Charting.xml
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\Igor\Desktop\Projekt ZPO\Projekt\Projekt\bin\Debug\de\PdfSharp.Charting.resources.dll

@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SQLite;
 using System.Data;
+using System.Net;
+using System.IO;
+using Microsoft.CSharp;
+using Newtonsoft.Json;
 
 namespace Projekt
 {
@@ -57,38 +61,93 @@ namespace Projekt
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TeamInfo ti = new TeamInfo(2);
+            string token = getToken();
+            var request = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/BVB/feed?access_token=" + token);
+            var response = (HttpWebResponse)request.GetResponse();
+            FacebookPost fbPost = getFacebookPost(response);
+
+            TeamInfo ti = new TeamInfo(2, fbPost);
             ti.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            TeamInfo ti = new TeamInfo(1);
+            string token = getToken();
+            var request = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/fcbayern.en/feed?access_token="+token);
+            var response = (HttpWebResponse)request.GetResponse();
+            FacebookPost fbPost = getFacebookPost(response);
+
+            TeamInfo ti = new TeamInfo(1, fbPost);
             ti.Show();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            TeamInfo ti = new TeamInfo(3);
+            string token = getToken();
+            var request = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/FCKoeln/feed?access_token=" + token);
+            var response = (HttpWebResponse)request.GetResponse();
+            FacebookPost fbPost = getFacebookPost(response);
+
+            TeamInfo ti = new TeamInfo(3, fbPost);
             ti.Show();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            TeamInfo ti = new TeamInfo(4);
+            string token = getToken();
+            var request = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/herthabsc/feed?access_token=" + token);
+            var response = (HttpWebResponse)request.GetResponse();
+            FacebookPost fbPost = getFacebookPost(response);
+
+            TeamInfo ti = new TeamInfo(4, fbPost);
             ti.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            TeamInfo ti = new TeamInfo(5);
+            string token = getToken();
+            var request = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/werderbremenEN/feed?access_token=" + token);
+            var response = (HttpWebResponse)request.GetResponse();
+            FacebookPost fbPost = getFacebookPost(response);
+
+            TeamInfo ti = new TeamInfo(5, fbPost);
             ti.Show();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            TeamInfo ti = new TeamInfo(6);
+            string token = getToken();
+            var request = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/vflwolfsburg.int/feed?access_token=" + token);
+            var response = (HttpWebResponse)request.GetResponse();
+            FacebookPost fbPost = getFacebookPost(response);
+
+            TeamInfo ti = new TeamInfo(6, fbPost);
             ti.Show();
+        }
+        private string getToken()
+        {
+            var tokenRequest = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/oauth/access_token?client_id=1066391300160675&client_secret=529c6b46acc37b676b6bc438c7691291&grant_type=client_credentials");
+
+            var tokenResponse = (HttpWebResponse)tokenRequest.GetResponse();
+
+            var responseTokenString = new StreamReader(tokenResponse.GetResponseStream()).ReadToEnd();
+
+            dynamic y = JsonConvert.DeserializeObject(responseTokenString);
+
+            return y.access_token;
+        }
+
+        private FacebookPost getFacebookPost(HttpWebResponse response)
+        {
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+            dynamic x = JsonConvert.DeserializeObject(responseString);
+            var data = x.data;
+            string message = data[0].message;
+            string created_time = data[0].created_time;
+            string id = data[0].id;
+            FacebookPost fbPost = new FacebookPost(created_time, message, id);
+            return fbPost;
         }
     }
 }
