@@ -8,6 +8,7 @@ namespace Projekt
 {
     public class Match
     {
+        //dane dot. danego meczu tj. nazwy drużyn, wynik, data etc.
         private int id;
         public string homeTeam { get; private set; }
         public int homeTeamScore { get; private set; }

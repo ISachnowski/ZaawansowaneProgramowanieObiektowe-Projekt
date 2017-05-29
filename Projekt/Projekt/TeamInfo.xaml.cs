@@ -40,8 +40,10 @@ namespace Projekt
             
             InitializeComponent();
             InitBinding(id);
+            //przekazanie tresci postu z fb do grida
             FacebookPostGrid.DataContext = fb;
         }
+        //funkcja inicjalizujaca bindingi dla druzyny pobierajaca je z bazy danych
         private void InitBinding(int id)
         {
             SQLiteConnection oSQLiteConnection =
@@ -101,7 +103,7 @@ namespace Projekt
 
             XImage image = XImage.FromFile(TeamLogoSource.Text);
 
-            // Left position in point
+         
             gfx.DrawImage(image, 230, 80);
 
 

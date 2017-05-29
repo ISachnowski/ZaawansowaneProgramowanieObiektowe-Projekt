@@ -34,17 +34,17 @@ namespace Projekt
 
         private void InitBinding()
         {
-            SQLiteConnection oSQLiteConnection =
-                new SQLiteConnection("Data Source=ProjektZPO.s3db");
-            SQLiteCommand oCommand = oSQLiteConnection.CreateCommand();
-            oCommand.CommandText = "SELECT * FROM Teams";
-            m_oDataAdapter = new SQLiteDataAdapter(oCommand.CommandText,
-                oSQLiteConnection);
-            SQLiteCommandBuilder oCommandBuilder =
-                new SQLiteCommandBuilder(m_oDataAdapter);
-            m_oDataSet = new DataSet();
-            m_oDataAdapter.Fill(m_oDataSet);
-            m_oDataTable = m_oDataSet.Tables[0];
+            //SQLiteConnection oSQLiteConnection =
+            //    new SQLiteConnection("Data Source=ProjektZPO.s3db");
+            //SQLiteCommand oCommand = oSQLiteConnection.CreateCommand();
+            //oCommand.CommandText = "SELECT * FROM Teams";
+            //m_oDataAdapter = new SQLiteDataAdapter(oCommand.CommandText,
+            //    oSQLiteConnection);
+            //SQLiteCommandBuilder oCommandBuilder =
+            //    new SQLiteCommandBuilder(m_oDataAdapter);
+            //m_oDataSet = new DataSet();
+            //m_oDataAdapter.Fill(m_oDataSet);
+            //m_oDataTable = m_oDataSet.Tables[0];
             //lstItems.DataContext = m_oDataTable.DefaultView;
         }
 
@@ -59,11 +59,16 @@ namespace Projekt
 
         }
 
+        //utworzenie okna z informacjami o druzynie
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //pobranie tokena
             string token = getToken();
+            //wyslanie zapytanie do api fb o posty na danej stronie
             var request = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/BVB/feed?access_token=" + token);
+            //odebranie wyniku
             var response = (HttpWebResponse)request.GetResponse();
+            //przetworzenie odpowiedzi serwera fb na obiekt klasy FacebookPost
             FacebookPost fbPost = getFacebookPost(response);
 
             TeamInfo ti = new TeamInfo(2, fbPost);
@@ -124,28 +129,36 @@ namespace Projekt
             TeamInfo ti = new TeamInfo(6, fbPost);
             ti.Show();
         }
+        // //////////////////////////////////////////////////////
+        
+        //pobieranie tokena do API
         private string getToken()
         {
+            //zapytanie o token
             var tokenRequest = (HttpWebRequest)WebRequest.Create("https://graph.facebook.com/v2.9/oauth/access_token?client_id=1066391300160675&client_secret=529c6b46acc37b676b6bc438c7691291&grant_type=client_credentials");
-
+            //odpowiedz serwera
             var tokenResponse = (HttpWebResponse)tokenRequest.GetResponse();
-
+            //przetowrzenie odpowiedzi na string
             var responseTokenString = new StreamReader(tokenResponse.GetResponseStream()).ReadToEnd();
-
+            //parsowanie jsona
             dynamic y = JsonConvert.DeserializeObject(responseTokenString);
 
             return y.access_token;
         }
 
+        //przetworzenie odpowiedzi serwera fb na obiekt FacebookPost  
         private FacebookPost getFacebookPost(HttpWebResponse response)
         {
+            //przetworzenie odpowiedzi na string
             var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
+            //parsowanie jsona
             dynamic x = JsonConvert.DeserializeObject(responseString);
             var data = x.data;
+            //przypisanie atrybutow najnowszego postu do poszczegolnych atrybutow
             string message = data[0].message;
             string created_time = data[0].created_time;
             string id = data[0].id;
+            //utworzenie obiektu FacebookPost z pobranym postem
             FacebookPost fbPost = new FacebookPost(created_time, message, id);
             return fbPost;
         }

@@ -21,9 +21,10 @@ namespace Projekt
     {
         public MainWindow()
         {
-            
+            //a method call to the partial class of the control 
             InitializeComponent();
         }
+        //obsługa przycisków ekranu głównego
         void Teams_Click(object sender, RoutedEventArgs e)
         {
             Teams window = new Teams();

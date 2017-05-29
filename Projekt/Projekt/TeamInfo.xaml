@@ -5,27 +5,27 @@
     <Grid
         x:Name="maingrid">
         <TextBlock Name="TeamLogoSource" Text="{Binding Path=Logo}" Visibility="Hidden" />
-        <TextBlock Name="TeamNameTextblock" FontSize="25" FontStyle="Oblique" Margin="41,10,422,713" Text="{Binding Path=Name}"  />
-        <TextBlock Margin="29,70,663,669">Rok założenia:</TextBlock>
+        <TextBlock Name="TeamNameTextblock" FontSize="25" Foreground="#1ba1e2" FontStyle="Oblique" Margin="41,10,422,713" Text="{Binding Path=Name}"  />
+        <TextBlock Margin="29,70,663,669" FontWeight="Bold">Rok założenia:</TextBlock>
         <TextBlock Name="TeamFoundedTextblock" Text="{Binding Path=Founded}" Margin="110,70,521,669" />
-        <TextBlock Margin="29,100,663,639"><Run Text="Prezes:"/></TextBlock>
+        <TextBlock Margin="29,100,663,639" FontWeight="Bold"><Run Text="Prezes:"/></TextBlock>
         <TextBlock Name="TeamPresidentTextblock" Text="{Binding Path=President}" Margin="110,100,521,639" />
-        <TextBlock Margin="29,130,663,609"><Run Text="Stadion:"/></TextBlock>
+        <TextBlock Margin="29,130,663,609" FontWeight="Bold"><Run Text="Stadion:"/></TextBlock>
         <TextBlock Name="TeamStadiumTextblock" Text="{Binding Path=Stadium}" Margin="110,130,521,609" />
-        <TextBlock Margin="29,160,663,579"><Run Text="Pojemność:"/></TextBlock>
+        <TextBlock Margin="29,160,663,579" FontWeight="Bold"><Run Text="Pojemność:"/></TextBlock>
         <TextBlock Name="TeamCapacityTextblock" Text="{Binding Path=Capacity}" Margin="110,160,521,579" />
-        <TextBlock Margin="29,190,663,549"><Run Text="Trener:"/></TextBlock>
+        <TextBlock Margin="29,190,663,549" FontWeight="Bold"><Run Text="Trener:"/></TextBlock>
         <TextBlock Name="TeamCoachTextblock" Text="{Binding Path=Coach}" Margin="110,190,521,549" />
         <Image Name="TeamLogo" Source="{Binding Path=Logo}" Margin="539,37,36,510"/>
 
         <Grid Name="FacebookPostGrid" Margin="146,301,166,219">
-            <TextBlock Margin="-10,-34,10,34">Najnowszy post na Facebooku</TextBlock>
+            <TextBlock Margin="-10,-34,10,34" >Najnowszy post na Facebooku</TextBlock>
             <Border HorizontalAlignment="Left" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="2" Height="251" Width="483" Margin="-13,-12,0,0" />
             <TextBlock Text="{Binding created_time}" Margin="0,0,0,224" />
             <TextBlock Text="{Binding message}" Margin="0,30,10,0" />
 
         </Grid>
-        <Button Margin="455,579,177,157" Click="Button_Click">Exportuj do pdf</Button>
+        <Button Margin="455,579,177,157" Click="Button_Click" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="#ffffff">Exportuj do pdf</Button>
 
     </Grid>
 </Window>

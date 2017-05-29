@@ -1,10 +1,10 @@
 ﻿<Window x:Class="Projekt.Matches"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Matches" Height="800" Width="800">
+        Title="Matches" Height="800" Width="800" Background="#e6ffff">
     <Grid>
-        <TextBlock Margin="10,-10,-10,10">MECZE</TextBlock>
-        <ComboBox Name="homeTeamDropdown" Margin="99,22,449,719">
+        <TextBlock Margin="10,-10,-10,10" >MECZE</TextBlock>
+        <ComboBox Name="homeTeamDropdown" Margin="99,22,449,719" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="#ffffff" >
             <ComboBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -23,8 +23,8 @@
         </ComboBox>
         <TextBox Name="homeTeamScoreBox" FontSize="19" Margin="348,20,412,716" RenderTransformOrigin="-0.905,-0.8" />
         <TextBox Name="awayTeamScoreBox" FontSize="19" Margin="395,20,365,716" RenderTransformOrigin="-0.905,-0.8" />
-        <Button Margin="329,58,346,683" RenderTransformOrigin="0.863,-4.107" Click="Button_Click">Dodaj mecz</Button>
-        <ComboBox Name="awayTeamDropdown" Margin="432,22,116,719">
+        <Button Margin="329,58,346,683" RenderTransformOrigin="0.863,-4.107" Click="Button_Click" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="#ffffff" >Dodaj mecz</Button>
+        <ComboBox Name="awayTeamDropdown" Margin="432,22,116,719" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="#ffffff" >
             <ComboBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -43,11 +43,11 @@
         </ComboBox>
 
         <Grid>
-            <ListView Name="MatchesList" Margin="192,93,193,50">
-                <ListView.View>
+            <ListView Name="MatchesList" Margin="192,93,193,50" SelectionChanged="MatchesList_SelectionChanged" >
+                <ListView.View >
                     <GridView AllowsColumnReorder="True">
-                        <GridView.Columns>
-                            <GridViewColumn Header="Gospodarz"
+                        <GridView.Columns >
+                            <GridViewColumn  Header="Gospodarz" 
                             DisplayMemberBinding="{Binding homeTeam}" />
                             <GridViewColumn Header=""
                             DisplayMemberBinding="{Binding homeTeamScore}" />

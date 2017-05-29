@@ -21,11 +21,14 @@ namespace Projekt
     /// </summary>
     public partial class Matches : Window
     {
+        //listy dla drużyn i meczy
         public List<Team> teams = new List<Team>();
         public List<Match> matchesList = fillMatches();
 
+        //połączenie z bazą ; pobranie meczy z tabeli Matches
         private static List<Match> fillMatches()
         {
+            //polaczenie z baza i pobranie meczy
             SQLiteDataAdapter m_oDataAdapter = null;
             DataSet m_oDataSet = null;
             DataTable m_oDataTable = null;
@@ -40,6 +43,7 @@ namespace Projekt
             m_oDataAdapter.Fill(m_oDataSet);
             m_oDataTable = m_oDataSet.Tables[0];
 
+           //Utworzenie listy meczy i dodanie ich z bazy do listy (do uzycia w widoku)
             List<Match> tmp = new List<Match>();
             foreach (DataRow row in m_oDataTable.Rows)
             {
@@ -56,6 +60,7 @@ namespace Projekt
 
             MatchesList.ItemsSource = matchesList;
 
+            //połączenie z bazą ; pobranie drużyn z tabeli Teams
             SQLiteDataAdapter m_oDataAdapter = null;
             DataSet m_oDataSet = null;
             DataTable m_oDataTable = null;
@@ -73,6 +78,7 @@ namespace Projekt
             awayTeamDropdown.ItemsSource = m_oDataTable.DefaultView;
         }
 
+        //dodawanie meczu do listy meczy
         public bool addMatch(string homeTeam, string awayTeam, int homeTeamScore, int awayTeamScore)
         {
             if (homeTeam == null || awayTeam == null)
@@ -91,12 +97,13 @@ namespace Projekt
             return teams;
         }
 
+        //dodawanie meczy do bazy danych
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string homeTeam = "";
             string awayTeam = "";
             DataRowView oDataRowView = homeTeamDropdown.SelectedItem as DataRowView;
-
+            //pobranie wartosci z widoku
             if (oDataRowView != null)
             {
                 homeTeam = oDataRowView.Row["Name"] as string;
@@ -111,14 +118,18 @@ namespace Projekt
 
             int homeTeamScore = Int32.Parse(homeTeamScoreBox.Text);
             int awayTeamScore = Int32.Parse(awayTeamScoreBox.Text);
+
+            //jezeli mecz zostal poprawnie dodany do listy
             if (addMatch(homeTeam, awayTeam, homeTeamScore, awayTeamScore))
             {
+                //czyszczenie okienek widoku
                 MatchesList.Items.Refresh();
                 homeTeamDropdown.SelectedIndex = -1;
                 awayTeamDropdown.SelectedIndex = -1;
                 homeTeamScoreBox.Text = "";
                 awayTeamScoreBox.Text = "";
 
+                //pobranie meczy z bazy
                 SQLiteDataAdapter m_oDataAdapter = null;
                 DataSet m_oDataSet = null;
                 DataTable m_oDataTable = null;
@@ -133,6 +144,7 @@ namespace Projekt
                 m_oDataAdapter.Fill(m_oDataSet);
                 m_oDataTable = m_oDataSet.Tables[0];
 
+                //dodanie nowego rekordu z nowym meczem
                 DataRow oDataRow = m_oDataTable.NewRow();
                 oDataRow[0] = m_oDataTable.Rows.Count+1;
                 oDataRow[1] = homeTeam;
@@ -146,6 +158,11 @@ namespace Projekt
 
             }
 
+
+        }
+
+        private void MatchesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }

@@ -2,15 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-        Title="MainWindow" Height="800" Width="800">
+        Title="MainWindow" Height="800" Width="800" Background="Black" >
     <Grid Height="800" Width="800">
         <Grid>
-            <Button Height="26" Width="100" Margin="246,412,246,331" Click="Teams_Click">Drużyny</Button>
-            <Button Height="26" Width="100" Margin="246,252,246,491" Click="Players_Click">Zawodnicy</Button>
-            <Button Height="26" Width="100" Margin="246,331,246,412" Click="Matches_Click">Mecze</Button>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Logo/murawa.jpg" Stretch="UniformToFill"/>
+            </Grid.Background>
+            <Button Height="50" Width="150" Margin="333,419,317,331" Click="Teams_Click" FontSize="18" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="#ffffff" >Drużyny</Button>
+            <Button Height="50" Width="150" Margin="333,337,317,413" Click="Matches_Click" FontSize="18" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="#ffffff" >Mecze</Button>
         </Grid>
     </Grid>
-   
+
 
 </Window>
     

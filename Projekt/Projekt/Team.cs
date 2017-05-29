@@ -18,8 +18,19 @@ namespace Projekt
         private string coach;
         private string president;
 
-        
+        public Team (int id, string name, int founded, string stadium, int capacity, string coach, string president)
+        {
+            this.id = id;
+            this.name = name;
+            this.founded = founded;
+            this.stadium = stadium;
+            this.capacity = capacity;
+            this.coach = coach;
+            this.president = president;
+        }
 
+        
+        //zmiana trenera po ID
         public void editCoach(string newCoach)
         {
             this.coach = newCoach;
@@ -28,7 +39,7 @@ namespace Projekt
             DataTable m_oDataTable = null;
             SQLiteConnection oSQLiteConnection = new SQLiteConnection("Data Source=ProjektZPO.s3db");
             SQLiteCommand oCommand = oSQLiteConnection.CreateCommand();
-            oCommand.CommandText = "SELECT * FROM Teams WHERE ID = "+this.id;
+            oCommand.CommandText = "SELECT * FROM Teams WHERE ID = "+this.id; //SQL: druzyna o podanym id
             m_oDataAdapter = new SQLiteDataAdapter(oCommand.CommandText,
                 oSQLiteConnection);
             SQLiteCommandBuilder oCommandBuilder =
@@ -37,6 +48,7 @@ namespace Projekt
             m_oDataAdapter.Fill(m_oDataSet);
             m_oDataTable = m_oDataSet.Tables[0];
 
+            //Edycja wybranego rekordu
             DataRow oDataRow = m_oDataTable.Rows[0];
             oDataRow.BeginEdit();
             oDataRow[5] = newCoach;
@@ -69,6 +81,7 @@ namespace Projekt
             m_oDataAdapter.Update(m_oDataSet);
         }
 
+        //metody zwracające poszczególne dane
         public string getName()
         {
             return this.name;
